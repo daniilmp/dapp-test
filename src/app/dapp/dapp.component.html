@@ -1,0 +1,15 @@
+<button [disabled] = "isConnected" (click)="connectToMetamask()" class="connectButton" [ngClass]= "{'connectButtonActive': isConnected == false, 'connectButtonDeactivated': isConnected == true}">Connect</button>
+<div *ngIf="isConnected">
+    <p>Connected</p>
+    <p *ngIf="isGettingBalances">Getting balances...</p>
+    <div *ngIf="!isGettingBalances">
+        <p>Balances:</p>
+        <p *ngFor="let balance of balances">{{balance}}</p>
+    </div>
+    <p *ngIf="isGettingExchangeRates">Getting exchange rates...</p>
+    <div *ngIf="!isGettingExchangeRates">
+        <p>Exchange Rate:</p>
+        <p *ngFor="let rate of exchangeRates">{{rate}}</p>
+    </div>
+</div>
+<p *ngIf="error != ''">{{error}}</p>
